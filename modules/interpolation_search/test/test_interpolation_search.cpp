@@ -90,8 +90,7 @@ TEST_F(MityaginaInterpolationSearch, Interpolation_search_works_fine) {
   ASSERT_NO_THROW(int result = interpolation_search(&in, in[4]));
 }
 
-TEST_F(MityaginaInterpolationSearch, Returns_not_negative_result) {
-  // Means that the value that we want to find exists
+TEST_F(MityaginaInterpolationSearch, Value_exists) {
   // Arrange
   int size = 20;
 
@@ -99,11 +98,10 @@ TEST_F(MityaginaInterpolationSearch, Returns_not_negative_result) {
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_GE(interpolation_search(&in, in[5]), -1);
+  ASSERT_GE(interpolation_search(&in, in[5]), 0);
 }
 
-TEST_F(MityaginaInterpolationSearch, Returns_negative_result) {
-  // Means that the value that we want to find doesn't exist
+TEST_F(MityaginaInterpolationSearch, Value_does_not_exist) {
   // Arrange
   int size = 10;
 
@@ -145,4 +143,15 @@ TEST_F(MityaginaInterpolationSearch, Returns_left_double_check) {
 
   // Assert
   ASSERT_GE(interpolation_search(&in, 0), 0);
+}
+
+TEST_F(MityaginaInterpolationSearch, Right_value_changes) {
+  // Arrange
+  int size = 10;
+
+  // Act
+  std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+  // Assert
+  ASSERT_GE(interpolation_search(&in, 7), 0);
 }

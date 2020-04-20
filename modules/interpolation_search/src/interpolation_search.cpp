@@ -50,34 +50,34 @@ void quickSort(std::vector<int> *in, int left, int right) {
 }
 
 int interpolation_search(std::vector<int> *in, int val) {
-  bool found;  // True if the val is found
-  int size = static_cast<int>(in->size());
-  int  left = 0;
+  int mid;
+  int left = 0;
+  int size = static_cast<int>((*in).size());
   int right = size - 1;
 
   quickSort(in, 0, size - 1);
-  // Array search loop until the val is found or the search limits still exist
-  for (found = false; ((*in)[left] < val) && ((*in)[right] > val) && !found; ) {
-    // Calculation by interpolation of the next element,
-    // which will be compared with the desired
-    int cur_pos = left;
-    int first = ((val - (*in)[left]) * (right - left));
-    cur_pos += first / ((*in)[right] - (*in)[left]);
-    // Obtaining new boundaries of the region if the desired is not found
-    if ((*in)[cur_pos] < val) {
-      left = cur_pos + 1;
-    } else if ((*in)[cur_pos] > val) {
-	  right = cur_pos - 1;
-    } else {
-	  found = true;
+
+  while ((*in)[left] < val && (*in)[right] > val) {
+      if ((*in)[right] == (*in)[left]) {
+        break;
+      }
+      mid = left + ((val - (*in)[left]) * (right - left)) / ((*in)[right] - (*in)[left]);
+
+      if ((*in)[mid] < val) {
+          left = mid + 1;
+      } else if ((*in)[mid] > val) {
+          right = mid - 1;
+      } else {
+          return mid;
+      }
     }
-  }
-  // returns index of a found element
+
   if ((*in)[left] == val) {
-    return left;
-  } else if ((*in)[right] == val) {
-    return right;
-  } else {
-    return -1;
+      return left;
   }
+  if ((*in)[right] == val) {
+      return right;
+  }
+
+  return -1; // Not found
 }
