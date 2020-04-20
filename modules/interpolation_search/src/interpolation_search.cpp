@@ -50,7 +50,6 @@ void quickSort(std::vector<int> *in, int left, int right) {
 }
 
 int interpolation_search(std::vector<int> *in, int val) {
-  int mid;
   int left = 0;
   int size = static_cast<int>((*in).size());
   int right = size - 1;
@@ -67,7 +66,7 @@ int interpolation_search(std::vector<int> *in, int val) {
 
   while ((*in)[left] < val && (*in)[right] > val) {
       int first = ((val - (*in)[left]) * (right - left));
-      mid = left + first / ((*in)[right] - (*in)[left]);
+      int mid = left + first / ((*in)[right] - (*in)[left]);
 
       if ((*in)[mid] < val) {
           left = mid + 1;
