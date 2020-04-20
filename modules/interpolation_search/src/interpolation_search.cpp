@@ -7,7 +7,7 @@
 
 std::vector<int> generateRandomVector(int size) {
   if (size <= 0) {
-  	throw "Invalid vector size";
+    throw "Invalid vector size";
   }
   std::mt19937 gen;
   gen.seed(static_cast<unsigned int>(time(0)));
@@ -58,7 +58,7 @@ int interpolation_search(std::vector<int> *in, int val) {
   quickSort(in, 0, size - 1);
   // Array search loop until the val is found or the search limits still exist
   for (found = false; ((*in)[left] < val) && ((*in)[right] > val) && !found; ) {
-    // Calculation by interpolation of the next element, 
+    // Calculation by interpolation of the next element,
     // which will be compared with the desired
     int cur_pos = left;
     int first = ((val - (*in)[left]) * (right - left));
@@ -66,18 +66,18 @@ int interpolation_search(std::vector<int> *in, int val) {
     // Obtaining new boundaries of the region if the desired is not found
     if ((*in)[cur_pos] < val) {
       left = cur_pos + 1;
-	} else if ((*in)[cur_pos] > val) {
+    } else if ((*in)[cur_pos] > val) {
 	  right = cur_pos - 1;
-	} else {
+    } else {
 	  found = true;
-	}
+    }
   }
   // returns index of a found element
   if ((*in)[left] == val) {
     return left;
   } else if ((*in)[right] == val) {
-	return right;
+    return right;
   } else {
-	return -1;
+    return -1;
   }
 }
