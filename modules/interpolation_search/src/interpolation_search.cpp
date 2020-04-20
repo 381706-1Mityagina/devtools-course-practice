@@ -6,21 +6,21 @@
 
 std::vector<int> generateRandomVector(int size) {
   if (size <= 0) {
-  	throw "Invalid vector size";
+    throw "Invalid vector size";
   }
   std::vector<int> _vector = std::vector<int>(size, 0);
   for (int i = 0; i < size; ++i) {
-    _vector[i] = rand() % (100 - 4);
+    _vector[i] = rand_r() % (100 - 4);
   }
   return _vector;
 }
 
 int partition(std::vector<int> *in, int left, int right) {
   if (left > right) {
-  	throw "Right should be greater then left";
+    throw "Right should be greater then left";
   }
   if (left < 0 || right < 0) {
-  	throw "Right & left should be >= 0";
+    throw "Right & left should be >= 0";
   }
   int pivot = (*in)[right];
   int count = left;
@@ -47,7 +47,7 @@ void quickSort(std::vector<int> *in, int left, int right) {
 }
 
 int interpolation_search(std::vector<int> *in, int val) {
-  bool found; // True if the val is found
+  bool found;  // True if the val is found
   int size = static_cast<int>(in->size());
   int cur_pos = 0, left = 0;
   int right = size - 1;
@@ -55,9 +55,11 @@ int interpolation_search(std::vector<int> *in, int val) {
   quickSort(in, 0, size - 1);
   // Array search loop until the val is found or the search limits still exist
   for (found = false; ((*in)[left] < val) && ((*in)[right] > val) && !found; ) {
-    // Calculation by interpolation of the next element, which will be compared with the desired
+    // Calculation by interpolation of the next element, 
+    // which will be compared with the desired
     cur_pos = left;
-    cur_pos += ((val - (*in)[left]) * (right - left)) / ((*in)[right] - (*in)[left]);
+    int first = ((val - (*in)[left]) * (right - left));
+    cur_pos += first / ((*in)[right] - (*in)[left]);
     // Obtaining new boundaries of the region if the desired is not found
     if ((*in)[cur_pos] < val) {
       left = cur_pos + 1;
