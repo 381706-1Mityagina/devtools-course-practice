@@ -3,17 +3,24 @@
 #include <iostream>
 #include <vector>
 
-std::vector<int> getRandomVector(int size) {
-  std::mt19937 gen;
-  gen.seed(static_cast<unsigned int>(time(0)));
+std::vector<int> generateRandomVector(int size) {
+  if (size <= 0) {
+  	throw "Invalid vector size";
+  }
   std::vector<int> _vector = std::vector<int>(size, 0);
   for (int i = 0; i < size; ++i) {
-    _vector[i] = gen() % (100 - 4);
+    _vector[i] = rand() % (100 - 4);
   }
   return _vector;
 }
 
 int partition(std::vector<int> *in, int left, int right) {
+  if (left > right) {
+  	throw "Right should be greater then left";
+  }
+  if (left < 0 || right < 0) {
+  	throw "Right & left should be >= 0";
+  }
   int pivot = (*in)[right];
   int count = left;
   for (int j = left; j < right; j++) {
