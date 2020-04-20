@@ -2,7 +2,6 @@
 
 #include <gtest/gtest.h>
 #include <vector>
-#include <list>
 #include "include/interpolation_search.h"
 
 class MityaginaInterpolationSearch : public ::testing::Test {
@@ -164,17 +163,14 @@ TEST_F(MityaginaInterpolationSearch, Right_value_changes_2) {
   std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
   // Assert
-  ASSERT_GE(interpolation_search(&in, 5), 0);
+  ASSERT_GE(interpolation_search(&in, 9), 0);
 }
 
 TEST_F(MityaginaInterpolationSearch, Right_eq_left_val_exists) {
   // Arrange
-  int size = 10;
-
-  // Act
   std::vector<int> in = {0};
 
-  // Assert
+  // Act && Assert
   EXPECT_EQ(interpolation_search(&in, 0), 0);
 }
 
