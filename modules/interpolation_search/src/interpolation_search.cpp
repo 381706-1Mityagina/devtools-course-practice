@@ -55,12 +55,17 @@ int interpolation_search(std::vector<int> *in, int val) {
   int size = static_cast<int>((*in).size());
   int right = size - 1;
 
+  if ((*in)[right] == (*in)[left]) {
+    if ((*in)[right] == val) {
+      return right;
+    } else {
+      return -1;
+    }
+  }
+
   quickSort(in, 0, size - 1);
 
   while ((*in)[left] < val && (*in)[right] > val) {
-      if ((*in)[right] == (*in)[left]) {
-        break;
-      }
       int first = ((val - (*in)[left]) * (right - left));
       mid = left + first / ((*in)[right] - (*in)[left]);
 
