@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <list>
-#include "include/graph_diameter_search.h"
+#include "include/interpolation_search.h"
 
 class MityaginaInterpolationSearch : public ::testing::Test {
 };
@@ -38,37 +38,34 @@ TEST_F(MityaginaInterpolationSearch, Can_handle_invalid_size_2) {
 TEST_F(MityaginaInterpolationSearch, Partition_works_as_expected) {
   // Arrange
   int size = 10;
-  int result = 0;
 
   // Act
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_NO_THROW(result = partition(&in, 0, size - 1));
+  ASSERT_NO_THROW(int result = partition(&in, 0, size - 1));
 }
 
 TEST_F(MityaginaInterpolationSearch, Wrong_boarders_negative) {
   // Arrange
   int size = 10;
-  int result = 0;
 
   // Act
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_ANY_THROW(result = partition(&in, -6, -1));
+  ASSERT_ANY_THROW(int result = partition(&in, -6, -1));
 }
 
 TEST_F(MityaginaInterpolationSearch, Wrong_boarders_min_greater_max) {
   // Arrange
   int size = 10;
-  int result = 0;
 
   // Act
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_ANY_THROW(result = partition(&in, 6, 2));
+  ASSERT_ANY_THROW(int result = partition(&in, 6, 2));
 }
 
 TEST_F(MityaginaInterpolationSearch, Partition_result_is_positive) {
