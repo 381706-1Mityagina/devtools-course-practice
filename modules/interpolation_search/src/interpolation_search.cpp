@@ -61,7 +61,8 @@ int interpolation_search(std::vector<int> *in, int val) {
       if ((*in)[right] == (*in)[left]) {
         break;
       }
-      mid = left + ((val - (*in)[left]) * (right - left)) / ((*in)[right] - (*in)[left]);
+      int first = ((val - (*in)[left]) * (right - left));
+      mid = left + first / ((*in)[right] - (*in)[left]);
 
       if ((*in)[mid] < val) {
           left = mid + 1;
