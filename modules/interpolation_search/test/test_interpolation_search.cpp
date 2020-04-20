@@ -76,7 +76,7 @@ TEST_F(MityaginaInterpolationSearch, Partition_result_is_positive) {
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_TRUE(partition(&in, 0, size - 1) >= 0);
+  ASSERT_GE(partition(&in, 0, size - 1), 0);
 }
 
 TEST_F(MityaginaInterpolationSearch, test8) {

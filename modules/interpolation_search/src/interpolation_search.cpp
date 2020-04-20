@@ -1,16 +1,19 @@
 // Copyright 2020 Mityagina Daria
 
 #include "include/interpolation_search.h"
+#include <random>
 #include <iostream>
 #include <vector>
 
 std::vector<int> generateRandomVector(int size) {
   if (size <= 0) {
-    throw "Invalid vector size";
+  	throw "Invalid vector size";
   }
+  std::mt19937 gen;
+  gen.seed(static_cast<unsigned int>(time(0)));
   std::vector<int> _vector = std::vector<int>(size, 0);
   for (int i = 0; i < size; ++i) {
-    _vector[i] = rand_r() % (100 - 4);
+    _vector[i] = gen() % (100 - 4);
   }
   return _vector;
 }
@@ -49,7 +52,7 @@ void quickSort(std::vector<int> *in, int left, int right) {
 int interpolation_search(std::vector<int> *in, int val) {
   bool found;  // True if the val is found
   int size = static_cast<int>(in->size());
-  int cur_pos = 0, left = 0;
+  int  left = 0;
   int right = size - 1;
 
   quickSort(in, 0, size - 1);
@@ -57,7 +60,7 @@ int interpolation_search(std::vector<int> *in, int val) {
   for (found = false; ((*in)[left] < val) && ((*in)[right] > val) && !found; ) {
     // Calculation by interpolation of the next element, 
     // which will be compared with the desired
-    cur_pos = left;
+    int cur_pos = left;
     int first = ((val - (*in)[left]) * (right - left));
     cur_pos += first / ((*in)[right] - (*in)[left]);
     // Obtaining new boundaries of the region if the desired is not found
