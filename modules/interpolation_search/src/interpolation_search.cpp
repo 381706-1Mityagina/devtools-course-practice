@@ -80,5 +80,5 @@ int interpolation_search(std::vector<int> *in, int val) {
       return right;
   }
 
-  return -1; // Not found
+  return -1;  // Not found
 }
