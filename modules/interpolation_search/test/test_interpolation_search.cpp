@@ -99,7 +99,7 @@ TEST_F(MityaginaInterpolationSearch, Returns_not_negative_result) {
   std::vector<int> in = generateRandomVector(size);
 
   // Assert
-  ASSERT_GE(interpolation_search(&in, in[4]), 0);
+  ASSERT_GE(interpolation_search(&in, in[5]), -1);
 }
 
 TEST_F(MityaginaInterpolationSearch, Returns_negative_result) {
@@ -122,7 +122,7 @@ TEST_F(MityaginaInterpolationSearch, Returns_right) {
   std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
-  ASSERT_GT(interpolation_search(&in, 9), 0);
+  ASSERT_GT(interpolation_search(&in, 9), 4);
 }
 
 TEST_F(MityaginaInterpolationSearch, Returns_left) {
@@ -133,13 +133,16 @@ TEST_F(MityaginaInterpolationSearch, Returns_left) {
   std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
-  ASSERT_GE(interpolation_search(&in, 0), 0);
+  ASSERT_GE(4, interpolation_search(&in, 0));
 }
 
-TEST_F(MityaginaInterpolationSearch, test12) {
+TEST_F(MityaginaInterpolationSearch, Returns_left_double_check) {
   // Arrange
+  int size = 10;
 
   // Act
+  std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
+  ASSERT_GE(interpolation_search(&in, 0), 0);
 }
