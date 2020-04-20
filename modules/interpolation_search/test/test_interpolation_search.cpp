@@ -81,10 +81,13 @@ TEST_F(MityaginaInterpolationSearch, Partition_result_is_positive) {
 
 TEST_F(MityaginaInterpolationSearch, test8) {
   // Arrange
+  int size = 10;
 
   // Act
+  std::vector<int> in = generateRandomVector(size);
 
   // Assert
+  ASSERT_NO_THROW(int result = interpolation_search(&in, in[4]));
 }
 
 TEST_F(MityaginaInterpolationSearch, test1) {

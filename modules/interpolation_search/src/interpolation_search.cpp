@@ -46,17 +46,13 @@ void quickSort(std::vector<int> *in, int left, int right) {
   }
 }
 
-void quickSort(std::vector<int> *in, int size) {
-  quickSort(in, 0, size - 1);
-}
-
 int interpolation_search(std::vector<int> *in, int val) {
   bool found; // True if the val is found
-  int size = static_cast<int>((*in).size());
+  int size = static_cast<int>(in->size());
   int cur_pos = 0, left = 0;
   int right = size - 1;
 
-  quickSort(in, size);
+  quickSort(in, 0, size - 1);
   // Array search loop until the val is found or the search limits still exist
   for (found = false; ((*in)[left] < val) && ((*in)[right] > val) && !found; ) {
     // Calculation by interpolation of the next element, which will be compared with the desired
