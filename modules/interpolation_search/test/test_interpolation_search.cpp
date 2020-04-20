@@ -111,23 +111,29 @@ TEST_F(MityaginaInterpolationSearch, Returns_negative_result) {
   std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
-  ASSERT_GT(0, interpolation_search(&in, 99));
+  ASSERT_GT(0, interpolation_search(&in, 909));
 }
 
-TEST_F(MityaginaInterpolationSearch, test10) {
+TEST_F(MityaginaInterpolationSearch, Returns_right) {
   // Arrange
+  int size = 10;
 
   // Act
+  std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
+  ASSERT_GT(interpolation_search(&in, 9), 0);
 }
 
-TEST_F(MityaginaInterpolationSearch, test11) {
+TEST_F(MityaginaInterpolationSearch, Returns_left) {
   // Arrange
+  int size = 10;
 
   // Act
+  std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
+  ASSERT_GE(interpolation_search(&in, 0), 0);
 }
 
 TEST_F(MityaginaInterpolationSearch, test12) {
