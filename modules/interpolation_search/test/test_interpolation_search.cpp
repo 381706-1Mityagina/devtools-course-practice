@@ -79,7 +79,7 @@ TEST_F(MityaginaInterpolationSearch, Partition_result_is_positive) {
   ASSERT_GE(partition(&in, 0, size - 1), 0);
 }
 
-TEST_F(MityaginaInterpolationSearch, test8) {
+TEST_F(MityaginaInterpolationSearch, Interpolation_search_works_fine) {
   // Arrange
   int size = 10;
 
@@ -90,20 +90,28 @@ TEST_F(MityaginaInterpolationSearch, test8) {
   ASSERT_NO_THROW(int result = interpolation_search(&in, in[4]));
 }
 
-TEST_F(MityaginaInterpolationSearch, test1) {
+TEST_F(MityaginaInterpolationSearch, Returns_not_negative_result) {
+  // Means that the value that we want to find exists
   // Arrange
+  int size = 20;
 
   // Act
+  std::vector<int> in = generateRandomVector(size);
 
   // Assert
+  ASSERT_GE(interpolation_search(&in, in[4]), 0);
 }
 
-TEST_F(MityaginaInterpolationSearch, test9) {
+TEST_F(MityaginaInterpolationSearch, Returns_negative_result) {
+  // Means that the value that we want to find doesn't exist
   // Arrange
+  int size = 10;
 
   // Act
+  std::vector<int> in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   // Assert
+  ASSERT_GT(0, interpolation_search(&in, 99));
 }
 
 TEST_F(MityaginaInterpolationSearch, test10) {
