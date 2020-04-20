@@ -156,6 +156,17 @@ TEST_F(MityaginaInterpolationSearch, Right_value_changes) {
   ASSERT_GE(interpolation_search(&in, 3), 0);
 }
 
+TEST_F(MityaginaInterpolationSearch, Right_value_changes_2) {
+  // Arrange
+  int size = 3;
+
+  // Act
+  std::vector<int> in = {0, 1, 2};
+
+  // Assert
+  ASSERT_GE(interpolation_search(&in, 1), 0);
+}
+
 TEST_F(MityaginaInterpolationSearch, Right_eq_left_val_exists) {
   // Arrange
   int size = 10;
